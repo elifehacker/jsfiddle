@@ -9,7 +9,7 @@ python dragontomap.py
 ```
 and note down the output.
 
-3. Place the output list to https://jsfiddle.net/elifehacker/Lraobzx4/ remember to put a ; by the end.
+3. Place the output list to the html script desction in the IDE https://jsfiddle.net/elifehacker/Lraobzx4/ remember to put a ; by the end.
 
 4. Visit https://jsfiddle.net/elifehacker/Lraobzx4/[REPLACE WITH LATEST VERSION]/show
 
