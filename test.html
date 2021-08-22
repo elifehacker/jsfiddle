@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <style>
+        html,
+        body,
+        #map_canvas {
+            height: 500px;
+            width: 500px;
+            margin: 0px;
+            padding: 0px
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map_canvas" style="width:100%; height:100%; border: 2px solid #3872ac;"></div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk">
+    </script>
+    <script>
+        var locations = [['yidi 0419688896 #1#/#2#', '2 timbrol ave, Rhodes, New South Wales, Australia, 2138'], ['Steven 0434798974 #3#', '9 Forsyth street, West Ryde, New South Wales, Australia, 2114'], ['kelly 0417436920 #4#', '9 forsyth st, West Ryde, New South Wales, Australia, 2114'], ['Joyce 0450683068 #5#', '5 Verona drive, Wentworth Point, New South Wales, Australia, 2127'], ['水果姐 0451038883 #6#', '159 park  rd, Dundas, New South Wales, Australia, 2117'], ['qiao zhang 0451198539 #7#/#14#/#51#', '12 boronia st ermignton, Ermington, New South Wales, Australia, 2115'], ['Shuang Gao 0432637280 #8#/#30#', '48 Bain Pl, Dundas Valley , New South Wales, Australia, 2117'], ['Emma 0431215552 #10#/#22#', '402/2 shoreline dr Rhodes, Rhodes, New South Wales, Australia, 2138'], ['Jinghanbao 0404993666 #12#', '1110/6 galloway st，mascot, Sydney Domestic Airport, New South Wales, Australia, 2020'], ['Arthur 0412752092 #13#', '137 herring road, Macquarie Park, New South Wales, Australia, 2113'], ['Lilain 0426120316 #15#/#50#/#58#', 'Room2028，3 Belmore St, Burwood, New South Wales, Australia, 2134'], ['Maggie 0432066774 #16#', '38 St Charbel Way , Punchbowl, New South Wales, Australia, 2196'], ['qin 0450990186 #19#/#59#', '68 Burwood Road, Concord, New South Wales, Australia, 2137'], ['Jun li 0422571608 #20#/#57#', '7/204 Croydon Ave, Croydon Park, New South Wales, Australia, 2133'], ['Sophie 0450477782 #21#', '65 Samuel Street, Ryde, New South Wales, Australia, 2112'], ['Tracy 0410688529 #23#', '72 Woodlands Rd, Taren Point, New South Wales, Australia, 2229'], ['joyce 0433884676 #24#', '19/69 park road homebush 2140, Homebush, New South Wales, Australia, 2140'], ['Jiajiajia 0410580490 #25#', 'Unit 211  1 grosvenor street \n, Doncaster, Victoria, Australia, 3108'], ['serena 0432673347 #26#', '2A Banksia street, eastwood, New South Wales, Australia, 2122'], ['Ying 0490214308 #27#', '45 Gubbuteh rd, little bay , Little Bay, New South Wales, Australia, 2036'], ['WENDY  WU  0415528655 #28#', '42 Page  ST  Banksmeadow  NSW  2019, Banksmeadow, New South Wales, Australia, 2019'], ['Iven Huang 0430009233 #29#', '804/12 East street, Granville, New South Wales, Australia, 2142'], ['Marina 0410581990 #31#/#36#', 'Unit 3/ 38-42 Cox Cres., Dundas Valley, New South Wales, Australia, 2117'], ['evan 0416366607 #32#', '17 marine parade, Wentworth Point, New South Wales, Australia, 2127'], ['Simin Chen 0450566524 #33#', '15 Gasnier Ave , North Kellyville, New South Wales, Australia, 2155'], ['Mika 0437670742 #34#', '19 Grazier Road, Rouse Hill, New South Wales, Australia, 2155'], ['Rhogina 0450590310 #35#', '3 Banool Ave, St Ives, New South Wales, Australia, 2075'], ['Maggie 0431881111 #37#', '8 Yarralumla Dr, Carlingford, New South Wales, Australia, 2118'], ['Sisi 0423 386 988 #38#', '2/18 Volmer st , Oatlands, New South Wales, Australia, 2117'], ['Alisa 0416562519 #39#', '13 Verona Wentworth Point , Wentworth Point, New South Wales, Australia, 2127'], ['Emily 0434039017 #40#/#60#', '5a colin pl, Carlingford, New South Wales, Australia, 2118'], ['许虹 0414190728 #41#', 'unit13/58-60 Keeler St, Carlingford, New South Wales, Australia, 2118'], ['Fei 0426833210 #42#', '15 Young Road, Carlingford, New South Wales, Australia, 2118'], ['May 0404347405 #45#', '26 Salt Street. , Concord, New South Wales, Australia, 2137'], ['sharon 0478558333 #46#', 'unit 60，3-13 bundarra avenue south wahroonga, Wahroonga, New South Wales, Australia, 2076'], ['Lolita 0451421774 #47#', 'Unit 2201,46 savona drive, Wentworth Point, New South Wales, Australia, 2127'], ['Erica 0425212346 #48#', '302/11 Mary Street , Rhodes, New South Wales, Australia, 2138'], ['Shengqian Lu 0435090818 #52#', '15 Pickford Ave, Eastwood, New South Wales, Australia, 2122'], ['Echo Zhang 0415500469 #53#', '4/65 Great Western Hwy, Emu Plains NSW 2750, Emu Plains, New South Wales, Australia, 2750'], ['warren 0415832658 #54#', '63-64 park ave, Kingswood, New South Wales, Australia, 2747'], ['Fangying Shi 0450568859 #55#/#56#', '7/1A Busaco Road, Marsfield, New South Wales, Australia, 2122'], ['ren 0420945788 #61#', '5 dairy farm way, Kellyville, New South Wales, Australia, 2155'], ['Issa 0426630991 #62#', '1305d/101 Waterloo road , Macquarie Park , Macquarie Park, New South Wales, Australia, 2113'], ['Sharon 0408751906 #64#', '163 ST JOHNS AVE GORDON , Gordon, New South Wales, Australia, 2072']];
+
+        var geocoder;
+        var map;
+        var bounds = new google.maps.LatLngBounds();
+
+        function sleep(ms) {
+            return new Promise(
+                resolve => setTimeout(resolve, ms)
+            );
+        }
+
+        async function initialize() {
+            map = new google.maps.Map(
+                document.getElementById("map_canvas"), {
+                center: new google.maps.LatLng(37.4419, -122.1419),
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            geocoder = new google.maps.Geocoder();
+
+            for (i = 0; i < locations.length; i++) {
+                geocodeAddress(locations, i);
+                await sleep(1000);
+            }
+        }
+        google.maps.event.addDomListener(window, "load", initialize);
+
+        function geocodeAddress(locations, i) {
+            var title = locations[i][0];
+            var address = locations[i][1];
+            var url = locations[i][2];
+            geocoder.geocode({
+                'address': locations[i][1]
+            },
+
+                function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var marker = new google.maps.Marker({
+                            icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+                            map: map,
+                            position: results[0].geometry.location,
+                            title: title,
+                            animation: google.maps.Animation.DROP,
+                            address: address,
+                            url: url
+                        })
+                        infoWindow(marker, map, title, address, url);
+                        bounds.extend(marker.getPosition());
+                        map.fitBounds(bounds);
+                    } else {
+                        alert("geocode of " + address + " failed:" + status);
+                    }
+                });
+
+
+        }
+
+        function infoWindow(marker, map, title, address, url) {
+            google.maps.event.addListener(marker, 'click', function () {
+                var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>View location</a></p></div>";
+                iw = new google.maps.InfoWindow({
+                    content: html,
+                    maxWidth: 350
+                });
+                iw.open(map, marker);
+            });
+        }
+
+        function createMarker(results) {
+            var marker = new google.maps.Marker({
+                icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+                map: map,
+                position: results[0].geometry.location,
+                title: title,
+                animation: google.maps.Animation.DROP,
+                address: address,
+                url: url
+            })
+            bounds.extend(marker.getPosition());
+            map.fitBounds(bounds);
+            infoWindow(marker, map, title, address, url);
+            return marker;
+        }
+
+
+    </script>
+</body>
+
+</html>
