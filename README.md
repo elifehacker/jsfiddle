@@ -5,7 +5,9 @@
 python dragontomap.py
 ```
 and noted down the output.
-3. Place the output list to https://jsfiddle.net/elifehacker/Lraobzx4/
+
+3. Place the output list to https://jsfiddle.net/elifehacker/Lraobzx4/ remember to put a ; by the end.
+
 4. Visit https://jsfiddle.net/elifehacker/Lraobzx4/[REPLACE WITH LATEST VERSION]/show
 
 ## references
